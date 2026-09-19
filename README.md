@@ -1,9 +1,9 @@
 # DICE of FATE
-![Image](https://raw.githubusercontent.com/Team-ARG-Museum/ID-37-DICE-of-FATE/master/art/banner-ID-37.png)
+![Image](https://raw.githubusercontent.com/T-arg/ID-37-DICE-of-FATE/master/art/banner-ID-37.png)
 
 Digital Dice :  
-**Download latest Arduboy version and source :** https://github.com/Team-ARG-Museum/ID-37-DICE-of-FATE/releases/latest  
-MADE by TEAM a.r.g. : https://team-arg-museum.github.io/
+**Download latest Arduboy version and source :**
+MADE by TEAM a.r.g. :
 
 2016 - CASTPIXEL - JO3RI
 
