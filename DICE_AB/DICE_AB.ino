@@ -1,9 +1,9 @@
 /*
-  DICE of FATE: http://www.team-arg.org/dice-manual.html
+  DICE of FATE: https://t-arg.github.io/ID-37-DICE-of-FATE/
 
-  Arduboy version 1.7.2:  http://www.team-arg.org/dice-downloads.html
+  Arduboy version 1.7.2:  https://github.com/T-arg/ID-37-DICE-of-FATE
 
-  MADE by TEAM a.r.g. : http://www.team-arg.org/more-about.html
+  MADE by TEAM a.r.g. : https://t-arg.github.io/
 
   2016 - CASTPIXEL - JO3RI
 
