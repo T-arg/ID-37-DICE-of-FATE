@@ -302,6 +302,21 @@
       color: #5d4c4b;
     }
 
+    .dice-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0 0 16px;
+    }
+
+    .dice-item { text-align: center; margin: 0; }
+
+    .dice-item figcaption {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
     .links-row {
       margin-top: 28px;
       font-size: 14px;
@@ -427,9 +442,10 @@
           </div>
         </div>
         <p class="kbd-hint">
-          <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> move ·
-          <kbd>A</kbd> / <kbd>Z</kbd> A button ·
-          <kbd>B</kbd> / <kbd>S</kbd> / <kbd>X</kbd> B button
+          <kbd>←</kbd> <kbd>→</kbd> dice type ·
+          <kbd>↑</kbd> <kbd>↓</kbd> dice + / − ·
+          <kbd>A</kbd> / <kbd>Z</kbd> back ·
+          <kbd>B</kbd> / <kbd>S</kbd> / <kbd>X</kbd> roll / stop
         </p>
         <div class="bmc-wrap">
           <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="TEAMarg" data-color="#5d4c4b" data-emoji="☕" data-font="Cookie" data-text="Cool game? Buy us a coffee" data-outline-color="#fefefd" data-font-color="#fefefd" data-coffee-color="#FFDD00"></script>
@@ -438,8 +454,58 @@
 
       <h2>The game</h2>
       <p>
-        Manual coming soon.
+        Digital Dice is a perfect companion for all your boardgames! Don’t like rolling those real dice? Don’t have enough room to roll your dice? Maybe you just want a quiet alternative? These digital dice solve all those problems! Select your dice, choose the amount and start playing your boardgames with Dice of Fate!
       </p>
+
+      <h2>Buttons</h2>
+      <dl class="controls">
+        <dt>Left / Right</dt>
+        <dd>Select the type of dice.</dd>
+        <dt>Up</dt>
+        <dd>Dice +: add a die.</dd>
+        <dt>Down</dt>
+        <dd>Dice −: remove a die.</dd>
+        <dt>A</dt>
+        <dd>Go back.</dd>
+        <dt>B</dt>
+        <dd>Roll / stop.</dd>
+      </dl>
+
+      <h2>The different dice types</h2>
+      <div class="dice-strip">
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_coin.gif" alt="Coin"></div>
+          <figcaption>Coin</figcaption>
+        </figure>
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_d4.gif" alt="D4"></div>
+          <figcaption>D4</figcaption>
+        </figure>
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_d6.gif" alt="D6"></div>
+          <figcaption>D6</figcaption>
+        </figure>
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_d8.gif" alt="D8"></div>
+          <figcaption>D8</figcaption>
+        </figure>
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_d10.gif" alt="D10"></div>
+          <figcaption>D10</figcaption>
+        </figure>
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_d12.gif" alt="D12"></div>
+          <figcaption>D12</figcaption>
+        </figure>
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_d20.gif" alt="D20"></div>
+          <figcaption>D20</figcaption>
+        </figure>
+        <figure class="dice-item">
+          <div class="sprite-thumb"><img src="images/DICE_d100.gif" alt="D100"></div>
+          <figcaption>D100</figcaption>
+        </figure>
+      </div>
 
       <p class="links-row">
         Source and hex:
