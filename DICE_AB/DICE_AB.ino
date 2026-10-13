@@ -1,11 +1,13 @@
 /*
   DICE of FATE: https://t-arg.github.io/ID-37-DICE-of-FATE/
 
-  Arduboy version 1.7.2:  https://github.com/T-arg/ID-37-DICE-of-FATE
+  Arduboy version 2.0:  https://github.com/T-arg/ID-37-DICE-of-FATE
 
   MADE by TEAM a.r.g. : https://t-arg.github.io/
 
   2016 - CASTPIXEL - JO3RI
+
+  2026 - MUSIC and SOUND EFFECTS - JO3RI
 
   License: MIT : https://opensource.org/licenses/MIT
 
@@ -26,6 +28,7 @@ const FunctionPointer PROGMEM  mainGameLoop[] = {
   stateMenuPlay,
   stateMenuInfo,
   stateMenuSoundfx,
+  stateMenuJbox,
   stateDiceTypeAndAmount,
   stateDiceRolling,
   stateDiceResult,
@@ -33,7 +36,8 @@ const FunctionPointer PROGMEM  mainGameLoop[] = {
 
 void setup()
 {
-  arduboy.begin();
+  arduboy.boot();
+  arduboy.audio.begin();
   arduboy.setFrameRate(60);
   arduboy.initRandomSeed();
 }
@@ -43,6 +47,7 @@ void loop()
   if (!(arduboy.nextFrame())) return;
   arduboy.pollButtons();
   arduboy.clear();
+  musicUpdate();
   ((FunctionPointer) pgm_read_word (&mainGameLoop[gameState]))();
   arduboy.display();
   for (byte i = 0; i < 4; i++) if (buttonPressed[i] == true) pressedButtonCounter++;

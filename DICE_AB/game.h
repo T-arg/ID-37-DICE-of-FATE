@@ -62,7 +62,6 @@ void drawNumbers(byte numbersX, byte numbersY, int number)
   for (byte i = 0; i < charLen; i++)
   {
     char digit = buf[i];
-    byte j;
     if (digit <= 48)
     {
       digit = 0;
@@ -72,10 +71,6 @@ void drawNumbers(byte numbersX, byte numbersY, int number)
       if (digit > 9) digit = 0;
     }
 
-    for (byte z = 0; z < 10; z++)
-    {
-      if (digit == z) j = z;
-    }
     sprites.drawSelfMasked(numbersX - (4 + (5 * (charLen - 1))) + (10 * i), numbersY, allNumbers, digit);
   }
 }
@@ -116,6 +111,7 @@ void stateMenuPlay()
   showDiceName = true;
   slideCounter = 0;
   amountOfDice = 2;
+  musicPickGameTune();
   gameState = STATE_DICE_TYPE_AND_AMOUNT;
 }
 
@@ -136,7 +132,7 @@ void stateDiceTypeAndAmount()
     currentDice++;
     for (byte i = 0; i < AMOUNT_OF_DICE_TYPE; i++) rollingDice[i].y = 7;
     showDiceName = false;
-    sound.tone(300, 20);
+    sfx(SFX_MOVE);
   }
   if (arduboy.justPressed(LEFT_BUTTON) && !slidingDice && (currentDice > 1))
   {
@@ -146,19 +142,19 @@ void stateDiceTypeAndAmount()
     currentDice--;
     for (byte i = 0; i < AMOUNT_OF_DICE_TYPE; i++) rollingDice[i].y = 7;
     showDiceName = false;
-    sound.tone(300, 20);
+    sfx(SFX_MOVE);
   }
   if (arduboy.justPressed(UP_BUTTON) && (amountOfDice < AMOUNT_OF_ROLLING_DICE) && (currentDice > 1) && (currentDice < 8))
   {
     buttonPressed[BUTTON_UP] = true;
     amountOfDice++;
-    sound.tone(600, 20);
+    sfx(SFX_UP);
   }
   if (arduboy.justPressed(DOWN_BUTTON) && (amountOfDice > 1) && (currentDice > 1) && (currentDice < 8))
   {
     buttonPressed[BUTTON_DOWN] = true;
     amountOfDice--;
-    sound.tone(600, 20);
+    sfx(SFX_DOWN);
   }
 
   if (arduboy.justPressed(B_BUTTON))
@@ -169,8 +165,8 @@ void stateDiceTypeAndAmount()
       rollingDice[i].type = currentDice - 1;
       rollingDice[i].x = 46;
       rollingDice[i].y = 1;
-      sound.tone(300, 20);
     }
+    sfx(SFX_SELECT);
     gameState = STATE_DICE_ROLLING;
   }
 
@@ -178,7 +174,7 @@ void stateDiceTypeAndAmount()
   {
     buttonPressed[BUTTON_A] = true;
     gameState = STATE_MENU_MAIN;
-    sound.tone(300, 20);
+    sfx(SFX_BACK);
   }
 
   if (slideLeft && slidingDice && (slideCounter < 37))
@@ -226,12 +222,12 @@ void stateDiceRolling()
   if (arduboy.everyXFrames(8))
   {
     frameDice++;
-    sound.tone(880, 20);
+    if (rollingDice[0].type > 0) sfx(SFX_ROLL);
   }
   if (arduboy.everyXFrames(3))
   {
     frameCoin++;
-    sound.tone(880, 20);
+    if (rollingDice[0].type == 0) sfx(SFX_COIN);
   }
   if (frameDice > 2) frameDice = 0;
   if (frameCoin > 7) frameCoin = 0;
@@ -257,7 +253,7 @@ void stateDiceRolling()
     buttonPressed[BUTTON_A] = true;
     gameState = STATE_DICE_TYPE_AND_AMOUNT;
     placeDice();
-    sound.tone(300, 20);
+    sfx(SFX_BACK);
   }
   if (arduboy.justPressed(B_BUTTON))
   {
@@ -269,7 +265,7 @@ void stateDiceRolling()
       diceResult = diceResult + rollingDice[i].result;
     }
     gameState = STATE_DICE_RESULT;
-    sound.tone(300, 20);
+    sfx(SFX_LAND);
   }
 
   sprites.drawSelfMasked(1, 53, allButtons, 2 * BUTTON_A + buttonPressed[BUTTON_A]);
@@ -285,13 +281,13 @@ void stateDiceResult()
     buttonPressed[BUTTON_A] = true;
     gameState = STATE_DICE_TYPE_AND_AMOUNT;
     placeDice();
-    sound.tone(300, 20);
+    sfx(SFX_BACK);
   }
   if (arduboy.justPressed(B_BUTTON))
   {
     buttonPressed[BUTTON_B] = true;
     gameState = STATE_DICE_ROLLING;
-    sound.tone(300, 20);
+    sfx(SFX_SELECT);
   }
   if (rollingDice[0].type > 0)
   {
@@ -300,8 +296,8 @@ void stateDiceResult()
     if (showResult) drawResult();
 
     if (arduboy.everyXFrames(2)) frameBand++;
-    if (frameBand == 4) sound.tone(880, 20);
-    if (frameBand == 6) sound.tone(1000, 20);
+    if (frameBand == 4 && arduboy.everyXFrames(2)) sfx(SFX_DING);
+    if (frameBand == 6 && arduboy.everyXFrames(2)) sfx((currentDice == 7 && amountOfDice == 1) ? (diceResult == 20 ? SFX_CRIT : diceResult == 1 ? SFX_FUMBLE : SFX_DING2) : SFX_DING2);
     if (frameBand > 7)
     {
       frameBand = 7;
