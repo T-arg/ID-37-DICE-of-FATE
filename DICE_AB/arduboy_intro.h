@@ -59,7 +59,7 @@ void drawTwinkles(int lx, int ly, uint16_t t)
   {
     byte p = (t / INTRO_DIV + pgm_read_byte(&twinkleXY[i * 3 + 2])) % 20;
     if (p > 10) p = 20 - p;
-    byte arm = p / 3;
+    byte arm = (p + 1) / 4;                         // 0, 1 or 2: the arms are at most 2 pixels long (a 5x5 star)
     if (p)
     {
       int x = lx + (int8_t)pgm_read_byte(&twinkleXY[i * 3]), y = ly + (int8_t)pgm_read_byte(&twinkleXY[i * 3 + 1]);

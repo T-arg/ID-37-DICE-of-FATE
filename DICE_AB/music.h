@@ -19,7 +19,7 @@
 #define MV(v) ((v) * MUSIC_VOL_PCT / 100)
 #define MS(n) ((uint8_t)-((((n) * MUSIC_VOL_PCT + 50) / 100) < 1 ? 1 : (((n) * MUSIC_VOL_PCT + 50) / 100)))
 
-// bytes per song:  diceTitle 441, diceTavern 460, diceDungeon 346, diceQuest 421, diceStudy 361, diceHoard 451  (total 2480)
+// bytes per song:  diceTitle 431, diceTavern 419, diceDungeon 345, diceQuest 408, diceStudy 354, diceHoard 437  (total 2394)
 // bytes of effects: 124
 
 // =====================================================================================================================
@@ -29,25 +29,28 @@
 // ---------------------------------------------------------------------------
 // Dice of Fate - title screen
 // A minor, a heroic fantasy march: the adventurers gather (16 bars). 100 % volume.
-// 441 bytes
+// 431 bytes
 // ---------------------------------------------------------------------------
-Song diceTitle[] = {          // total song in bytes = 441
-  0x08,                         // Number of tracks
+Song diceTitle[] = {          // total song in bytes = 431
+  0x0B,                         // Number of tracks
   0x00, 0x00,                   // Address of track 0   //0  lead
-  0xB2, 0x00,                   // Address of track 1   //178  bar
-  0xB7, 0x00,                   // Address of track 2   //183  bass
-  0x0D, 0x01,                   // Address of track 3   //269  stabM
-  0x1E, 0x01,                   // Address of track 4   //286  stabm
-  0x2F, 0x01,                   // Address of track 5   //303  chords
-  0x83, 0x01,                   // Address of track 6   //387  drums
-  0x8A, 0x01,                   // Address of track 7   //394  pair
+  0xA1, 0x00,                   // Address of track 1   //161  bar
+  0xA6, 0x00,                   // Address of track 2   //166  bass
+  0xFC, 0x00,                   // Address of track 3   //252  stabM
+  0x02, 0x01,                   // Address of track 4   //258  stabm
+  0x08, 0x01,                   // Address of track 5   //264  chords
+  0x5C, 0x01,                   // Address of track 6   //348  drums
+  0x63, 0x01,                   // Address of track 7   //355  pair
+  0x7D, 0x01,                   // Address of track 8   //381  sh0
+  0x8B, 0x01,                   // Address of track 9   //395  sh1
+  0x90, 0x01,                   // Address of track 10   //400  sh2
 
   0x00,                         // Channel 0 entry track (lead)
   0x05,                         // Channel 1 entry track (chords)
   0x02,                         // Channel 2 entry track (bass)
   0x06,                         // Channel 3 entry track (drums)
 
-  //"Track 0" lead  [178 bytes]
+  //"Track 0" lead  [161 bytes]
   ATM_VOL(46),
   ATM_SL_VOL((uint8_t)-3),
   ATM_NOTE_A4,
@@ -72,30 +75,20 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_DELAY(32),
   ATM_NOTE_F5,
   ATM_DELAY(16),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_A5,
   ATM_DELAY(16),
   ATM_NOTE_F5,
   ATM_DELAY(16),
   ATM_NOTE_G5,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_D6,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_G5,
   ATM_DELAY(32),
   ATM_NOTE_E5,
   ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_A5,
   ATM_DELAY(8),
   ATM_NOTE_E6,
@@ -103,9 +96,7 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_NOTE_C6,
   ATM_DELAY(16),
   ATM_NOTE_C6,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_G5,
   ATM_DELAY(8),
   ATM_NOTE_E5,
@@ -115,9 +106,7 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_NOTE_D5,
   ATM_DELAY(8),
   ATM_NOTE_G5,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_G5,
   ATM_DELAY(8),
   ATM_NOTE_D6,
@@ -127,9 +116,7 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_NOTE_E5,
   ATM_DELAY(8),
   ATM_NOTE_G5_,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_G5_,
   ATM_DELAY(8),
   ATM_NOTE_E5,
@@ -144,10 +131,7 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_DELAY(8),
   ATM_NOTE_E6,
   ATM_DELAY(32),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_F6,
   ATM_DELAY(8),
   ATM_NOTE_C6,
@@ -178,10 +162,7 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_DELAY(8),
   ATM_NOTE_B5,
   ATM_DELAY(32),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_F6,
   ATM_DELAY(16),
   ATM_NOTE_E6,
@@ -193,23 +174,16 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_NOTE_F5,
   ATM_DELAY(8),
   ATM_NOTE_G5_,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_E6,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_G5_,
   ATM_DELAY(16),
   ATM_NOTE_E5,
   ATM_DELAY(16),
   ATM_NOTE_E5,
   ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_E6,
   ATM_DELAY(8),
   ATM_NOTE_A6,
@@ -268,30 +242,14 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_REPEAT(0, 1),   // 1x bar
   ATM_GOTO(2),   // -> bass
 
-  //"Track 3" stabM  [17 bytes]
+  //"Track 3" stabM  [6 bytes]
   ATM_ARP(0x43, 0x22),
-  ATM_DELAY(16),
-  ATM_VOL(28),
-  ATM_NOTE_A3,
-  ATM_SL_VOL((uint8_t)-2),
-  ATM_DELAY(32),
-  ATM_VOL(28),
-  ATM_NOTE_A3,
-  ATM_SL_VOL((uint8_t)-2),
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_RETURN,
 
-  //"Track 4" stabm  [17 bytes]
+  //"Track 4" stabm  [6 bytes]
   ATM_ARP(0x34, 0x22),
-  ATM_DELAY(16),
-  ATM_VOL(28),
-  ATM_NOTE_A3,
-  ATM_SL_VOL((uint8_t)-2),
-  ATM_DELAY(32),
-  ATM_VOL(28),
-  ATM_NOTE_A3,
-  ATM_SL_VOL((uint8_t)-2),
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_RETURN,
 
   //"Track 5" chords  [84 bytes]
@@ -353,66 +311,76 @@ Song diceTitle[] = {          // total song in bytes = 441
   ATM_DELAY(8),
   ATM_RETURN,
 
+  //"Track 8" sh0  [14 bytes]
+  ATM_DELAY(16),
+  ATM_VOL(28),
+  ATM_NOTE_A3,
+  ATM_SL_VOL((uint8_t)-2),
+  ATM_DELAY(32),
+  ATM_VOL(28),
+  ATM_NOTE_A3,
+  ATM_SL_VOL((uint8_t)-2),
+  ATM_DELAY(16),
+  ATM_RETURN,
+
+  //"Track 9" sh1  [5 bytes]
+  ATM_NOTE_A5,
+  ATM_DELAY(8),
+  ATM_NOTE_C6,
+  ATM_DELAY(8),
+  ATM_RETURN,
+
+  //"Track 10" sh2  [4 bytes]
+  ATM_DELAY(8),
+  ATM_NOTE_B5,
+  ATM_DELAY(8),
+  ATM_RETURN,
+
 };
 
 // ---------------------------------------------------------------------------
 // Dice of Fate - in game 1: Tavern Jig
 // G major, a rowdy 6/8 jig: dice, ale and a fiddler in the corner.
-// 460 bytes
+// 419 bytes
 // ---------------------------------------------------------------------------
-Song diceTavern[] = {          // total song in bytes = 460
-  0x08,                         // Number of tracks
+Song diceTavern[] = {          // total song in bytes = 419
+  0x0D,                         // Number of tracks
   0x00, 0x00,                   // Address of track 0   //0  lead
-  0xA8, 0x00,                   // Address of track 1   //168  bar
-  0xAD, 0x00,                   // Address of track 2   //173  bass
-  0x03, 0x01,                   // Address of track 3   //259  stabM
-  0x20, 0x01,                   // Address of track 4   //288  stabm
-  0x3D, 0x01,                   // Address of track 5   //317  chords
-  0x91, 0x01,                   // Address of track 6   //401  drums
-  0x98, 0x01,                   // Address of track 7   //408  pair
+  0x80, 0x00,                   // Address of track 1   //128  bar
+  0x85, 0x00,                   // Address of track 2   //133  bass
+  0xDB, 0x00,                   // Address of track 3   //219  stabM
+  0xE6, 0x00,                   // Address of track 4   //230  stabm
+  0xF1, 0x00,                   // Address of track 5   //241  chords
+  0x45, 0x01,                   // Address of track 6   //325  drums
+  0x4C, 0x01,                   // Address of track 7   //332  pair
+  0x5B, 0x01,                   // Address of track 8   //347  sh0
+  0x67, 0x01,                   // Address of track 9   //359  sh1
+  0x6D, 0x01,                   // Address of track 10   //365  sh2
+  0x75, 0x01,                   // Address of track 11   //373  sh3
+  0x79, 0x01,                   // Address of track 12   //377  sh4
 
   0x00,                         // Channel 0 entry track (lead)
   0x05,                         // Channel 1 entry track (chords)
   0x02,                         // Channel 2 entry track (bass)
   0x06,                         // Channel 3 entry track (drums)
 
-  //"Track 0" lead  [168 bytes]
+  //"Track 0" lead  [128 bytes]
   ATM_VOL(MV(44)),
   ATM_SL_VOL(MS(4)),
-  ATM_NOTE_G5,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_G6,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_B5,
   ATM_DELAY(8),
-  ATM_NOTE_G5,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_B5,
   ATM_DELAY(24),
   ATM_NOTE_C6,
   ATM_DELAY(8),
-  ATM_NOTE_E6,
-  ATM_DELAY(8),
-  ATM_NOTE_G6,
-  ATM_DELAY(8),
-  ATM_NOTE_E6,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
+  ATM_GOTO(10),   // -> sh2
   ATM_DELAY(8),
   ATM_NOTE_G5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_F6_,
   ATM_DELAY(8),
   ATM_NOTE_A6,
@@ -422,13 +390,9 @@ Song diceTavern[] = {          // total song in bytes = 460
   ATM_NOTE_D6,
   ATM_DELAY(16),
   ATM_NOTE_B5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_G6,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_B5,
   ATM_DELAY(8),
   ATM_NOTE_G5,
@@ -443,24 +407,14 @@ Song diceTavern[] = {          // total song in bytes = 460
   ATM_DELAY(8),
   ATM_NOTE_E6,
   ATM_DELAY(16),
-  ATM_NOTE_E6,
-  ATM_DELAY(8),
-  ATM_NOTE_G6,
-  ATM_DELAY(8),
-  ATM_NOTE_E6,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
+  ATM_GOTO(10),   // -> sh2
   ATM_DELAY(8),
   ATM_NOTE_G5,
   ATM_DELAY(16),
   ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_F6_,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_A5,
   ATM_DELAY(16),
   ATM_NOTE_D6,
@@ -475,22 +429,11 @@ Song diceTavern[] = {          // total song in bytes = 460
   ATM_DELAY(16),
   ATM_NOTE_C6,
   ATM_DELAY(8),
-  ATM_NOTE_E6,
-  ATM_DELAY(8),
-  ATM_NOTE_G6,
-  ATM_DELAY(8),
-  ATM_NOTE_E6,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
+  ATM_GOTO(10),   // -> sh2
   ATM_DELAY(16),
   ATM_NOTE_B5,
   ATM_DELAY(8),
-  ATM_NOTE_G5,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_G6,
   ATM_DELAY(16),
   ATM_NOTE_A5,
@@ -498,9 +441,7 @@ Song diceTavern[] = {          // total song in bytes = 460
   ATM_NOTE_F5_,
   ATM_DELAY(8),
   ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_F6_,
   ATM_DELAY(16),
   ATM_NOTE_G6,
@@ -524,21 +465,12 @@ Song diceTavern[] = {          // total song in bytes = 460
   ATM_NOTE_E6,
   ATM_DELAY(16),
   ATM_NOTE_F6_,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_A5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(11),   // -> sh3
   ATM_NOTE_A5,
   ATM_DELAY(16),
-  ATM_NOTE_G5,
-  ATM_DELAY(8),
-  ATM_NOTE_B5,
-  ATM_DELAY(8),
-  ATM_NOTE_D6,
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_NOTE_G6,
   ATM_DELAY(24),
   ATM_GOTO(0),   // -> lead
@@ -587,45 +519,21 @@ Song diceTavern[] = {          // total song in bytes = 460
   ATM_REPEAT(0, 1),   // 1x bar
   ATM_GOTO(2),   // -> bass
 
-  //"Track 3" stabM  [29 bytes]
+  //"Track 3" stabM  [11 bytes]
   ATM_ARP(0x43, 0x22),
   ATM_DELAY(8),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
+  ATM_GOTO(8),   // -> sh0
   ATM_DELAY(16),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
+  ATM_GOTO(8),   // -> sh0
   ATM_DELAY(8),
   ATM_RETURN,
 
-  //"Track 4" stabm  [29 bytes]
+  //"Track 4" stabm  [11 bytes]
   ATM_ARP(0x34, 0x22),
   ATM_DELAY(8),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
+  ATM_GOTO(8),   // -> sh0
   ATM_DELAY(16),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(22)),
-  ATM_NOTE_G3,
-  ATM_SL_VOL(MS(2)),
+  ATM_GOTO(8),   // -> sh0
   ATM_DELAY(8),
   ATM_RETURN,
 
@@ -670,24 +578,56 @@ Song diceTavern[] = {          // total song in bytes = 460
   ATM_REPEAT(15, 7),   // 16x pair
   ATM_GOTO(6),   // -> drums
 
-  //"Track 7" pair  [31 bytes]
-  ATM_VOL(MV(36)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
+  //"Track 7" pair  [15 bytes]
+  ATM_GOTO(12),   // -> sh4
   ATM_VOL(MV(12)),
   ATM_SL_VOL(MS(12)),
   ATM_DELAY(8),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(36)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
+  ATM_GOTO(12),   // -> sh4
   ATM_VOL(MV(22)),
   ATM_SL_VOL(MS(6)),
+  ATM_DELAY(8),
+  ATM_RETURN,
+
+  //"Track 8" sh0  [12 bytes]
+  ATM_VOL(MV(22)),
+  ATM_NOTE_G3,
+  ATM_SL_VOL(MS(2)),
+  ATM_DELAY(8),
+  ATM_VOL(MV(22)),
+  ATM_NOTE_G3,
+  ATM_SL_VOL(MS(2)),
+  ATM_RETURN,
+
+  //"Track 9" sh1  [6 bytes]
+  ATM_NOTE_G5,
+  ATM_DELAY(8),
+  ATM_NOTE_B5,
+  ATM_GOTO(11),   // -> sh3
+  ATM_RETURN,
+
+  //"Track 10" sh2  [8 bytes]
+  ATM_NOTE_E6,
+  ATM_DELAY(8),
+  ATM_NOTE_G6,
+  ATM_DELAY(8),
+  ATM_NOTE_E6,
+  ATM_DELAY(8),
+  ATM_NOTE_C6,
+  ATM_RETURN,
+
+  //"Track 11" sh3  [4 bytes]
+  ATM_DELAY(8),
+  ATM_NOTE_D6,
+  ATM_DELAY(8),
+  ATM_RETURN,
+
+  //"Track 12" sh4  [11 bytes]
+  ATM_VOL(MV(36)),
+  ATM_SL_VOL(MS(12)),
+  ATM_DELAY(8),
+  ATM_VOL(MV(12)),
+  ATM_SL_VOL(MS(12)),
   ATM_DELAY(8),
   ATM_RETURN,
 
@@ -696,25 +636,26 @@ Song diceTavern[] = {          // total song in bytes = 460
 // ---------------------------------------------------------------------------
 // Dice of Fate - in game 2: Dungeon Crawl
 // C# minor, slow and creeping: torchlight, dripping water and something behind the door.
-// 346 bytes
+// 345 bytes
 // ---------------------------------------------------------------------------
-Song diceDungeon[] = {          // total song in bytes = 346
-  0x08,                         // Number of tracks
+Song diceDungeon[] = {          // total song in bytes = 345
+  0x09,                         // Number of tracks
   0x00, 0x00,                   // Address of track 0   //0  lead
-  0x62, 0x00,                   // Address of track 1   //98  bar
-  0x6B, 0x00,                   // Address of track 2   //107  bass
-  0xC1, 0x00,                   // Address of track 3   //193  stabM
-  0xCB, 0x00,                   // Address of track 4   //203  stabm
-  0xD5, 0x00,                   // Address of track 5   //213  chords
-  0x29, 0x01,                   // Address of track 6   //297  drums
-  0x30, 0x01,                   // Address of track 7   //304  pair
+  0x5B, 0x00,                   // Address of track 1   //91  bar
+  0x64, 0x00,                   // Address of track 2   //100  bass
+  0xBA, 0x00,                   // Address of track 3   //186  stabM
+  0xC4, 0x00,                   // Address of track 4   //196  stabm
+  0xCE, 0x00,                   // Address of track 5   //206  chords
+  0x22, 0x01,                   // Address of track 6   //290  drums
+  0x29, 0x01,                   // Address of track 7   //297  pair
+  0x3E, 0x01,                   // Address of track 8   //318  sh0
 
   0x00,                         // Channel 0 entry track (lead)
   0x05,                         // Channel 1 entry track (chords)
   0x02,                         // Channel 2 entry track (bass)
   0x06,                         // Channel 3 entry track (drums)
 
-  //"Track 0" lead  [98 bytes]
+  //"Track 0" lead  [91 bytes]
   ATM_VOL(MV(42)),
   ATM_SL_VOL(MS(2)),
   ATM_NOTE_G4_,
@@ -728,9 +669,7 @@ Song diceDungeon[] = {          // total song in bytes = 346
   ATM_NOTE_G4_,
   ATM_DELAY(32),
   ATM_NOTE_A4,
-  ATM_DELAY(16),
-  ATM_NOTE_C5_,
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_NOTE_E5,
   ATM_DELAY(32),
   ATM_NOTE_D5_,
@@ -742,17 +681,13 @@ Song diceDungeon[] = {          // total song in bytes = 346
   ATM_NOTE_G5_,
   ATM_DELAY(16),
   ATM_NOTE_E5,
-  ATM_DELAY(16),
-  ATM_NOTE_C5_,
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_NOTE_E5,
   ATM_DELAY(16),
   ATM_NOTE_B4,
   ATM_DELAY(32),
   ATM_NOTE_A4,
-  ATM_DELAY(16),
-  ATM_NOTE_C5_,
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_NOTE_F5_,
   ATM_DELAY(32),
   ATM_NOTE_D5_,
@@ -760,9 +695,7 @@ Song diceDungeon[] = {          // total song in bytes = 346
   ATM_NOTE_B4,
   ATM_DELAY(16),
   ATM_NOTE_G4_,
-  ATM_DELAY(16),
-  ATM_NOTE_C5_,
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_NOTE_E5,
   ATM_DELAY(16),
   ATM_NOTE_G5_,
@@ -770,9 +703,7 @@ Song diceDungeon[] = {          // total song in bytes = 346
   ATM_NOTE_A5,
   ATM_DELAY(32),
   ATM_NOTE_E5,
-  ATM_DELAY(16),
-  ATM_NOTE_C5_,
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_NOTE_B4,
   ATM_DELAY(16),
   ATM_NOTE_E5,
@@ -784,9 +715,7 @@ Song diceDungeon[] = {          // total song in bytes = 346
   ATM_NOTE_D5_,
   ATM_DELAY(16),
   ATM_NOTE_B4,
-  ATM_DELAY(16),
-  ATM_NOTE_C5_,
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_NOTE_F5_,
   ATM_DELAY(16),
   ATM_NOTE_A5,
@@ -806,9 +735,7 @@ Song diceDungeon[] = {          // total song in bytes = 346
   ATM_NOTE_G5_,
   ATM_DELAY(32),
   ATM_NOTE_E5,
-  ATM_DELAY(16),
-  ATM_NOTE_C5_,
-  ATM_DELAY(16),
+  ATM_GOTO(8),   // -> sh0
   ATM_GOTO(0),   // -> lead
 
   //"Track 1" bar  [9 bytes]
@@ -931,38 +858,45 @@ Song diceDungeon[] = {          // total song in bytes = 346
   ATM_DELAY(16),
   ATM_RETURN,
 
+  //"Track 8" sh0  [4 bytes]
+  ATM_DELAY(16),
+  ATM_NOTE_C5_,
+  ATM_DELAY(16),
+  ATM_RETURN,
+
 };
 
 // ---------------------------------------------------------------------------
 // Dice of Fate - in game 3: The Quest Begins
 // D major, a bright adventuring march: sword drawn, road ahead.
-// 421 bytes
+// 408 bytes
 // ---------------------------------------------------------------------------
-Song diceQuest[] = {          // total song in bytes = 421
-  0x08,                         // Number of tracks
+Song diceQuest[] = {          // total song in bytes = 408
+  0x0B,                         // Number of tracks
   0x00, 0x00,                   // Address of track 0   //0  lead
-  0x94, 0x00,                   // Address of track 1   //148  bar
-  0x99, 0x00,                   // Address of track 2   //153  bass
-  0xEF, 0x00,                   // Address of track 3   //239  stabM
-  0x00, 0x01,                   // Address of track 4   //256  stabm
-  0x11, 0x01,                   // Address of track 5   //273  chords
-  0x65, 0x01,                   // Address of track 6   //357  drums
-  0x6C, 0x01,                   // Address of track 7   //364  pair
+  0x8D, 0x00,                   // Address of track 1   //141  bar
+  0x92, 0x00,                   // Address of track 2   //146  bass
+  0xE8, 0x00,                   // Address of track 3   //232  stabM
+  0xEE, 0x00,                   // Address of track 4   //238  stabm
+  0xF4, 0x00,                   // Address of track 5   //244  chords
+  0x48, 0x01,                   // Address of track 6   //328  drums
+  0x4F, 0x01,                   // Address of track 7   //335  pair
+  0x64, 0x01,                   // Address of track 8   //356  sh0
+  0x6B, 0x01,                   // Address of track 9   //363  sh1
+  0x79, 0x01,                   // Address of track 10   //377  sh2
 
   0x00,                         // Channel 0 entry track (lead)
   0x05,                         // Channel 1 entry track (chords)
   0x02,                         // Channel 2 entry track (bass)
   0x06,                         // Channel 3 entry track (drums)
 
-  //"Track 0" lead  [148 bytes]
+  //"Track 0" lead  [141 bytes]
   ATM_VOL(MV(44)),
   ATM_SL_VOL(MS(3)),
   ATM_NOTE_D5,
   ATM_DELAY(16),
   ATM_NOTE_F5_,
-  ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_D6,
   ATM_DELAY(32),
   ATM_NOTE_C6_,
@@ -984,9 +918,7 @@ Song diceQuest[] = {          // total song in bytes = 421
   ATM_NOTE_D6,
   ATM_DELAY(8),
   ATM_NOTE_C6_,
-  ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_F5_,
   ATM_DELAY(8),
   ATM_NOTE_D5,
@@ -1010,13 +942,9 @@ Song diceQuest[] = {          // total song in bytes = 421
   ATM_NOTE_A5,
   ATM_DELAY(32),
   ATM_NOTE_E5,
-  ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_C6_,
-  ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_E5,
   ATM_DELAY(16),
   ATM_NOTE_C5_,
@@ -1048,17 +976,13 @@ Song diceQuest[] = {          // total song in bytes = 421
   ATM_NOTE_F6_,
   ATM_DELAY(16),
   ATM_NOTE_D6,
-  ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_F5_,
   ATM_DELAY(32),
   ATM_NOTE_E6,
   ATM_DELAY(8),
   ATM_NOTE_C6_,
-  ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_C6_,
   ATM_DELAY(8),
   ATM_NOTE_E6,
@@ -1084,9 +1008,7 @@ Song diceQuest[] = {          // total song in bytes = 421
   ATM_NOTE_G5,
   ATM_DELAY(32),
   ATM_NOTE_E5,
-  ATM_DELAY(8),
-  ATM_NOTE_A5,
-  ATM_DELAY(8),
+  ATM_GOTO(10),   // -> sh2
   ATM_NOTE_C6_,
   ATM_DELAY(16),
   ATM_NOTE_E6,
@@ -1145,30 +1067,14 @@ Song diceQuest[] = {          // total song in bytes = 421
   ATM_REPEAT(0, 1),   // 1x bar
   ATM_GOTO(2),   // -> bass
 
-  //"Track 3" stabM  [17 bytes]
+  //"Track 3" stabM  [6 bytes]
   ATM_ARP(0x43, 0x22),
-  ATM_DELAY(16),
-  ATM_VOL(MV(26)),
-  ATM_NOTE_D3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(32),
-  ATM_VOL(MV(26)),
-  ATM_NOTE_D3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(16),
+  ATM_GOTO(9),   // -> sh1
   ATM_RETURN,
 
-  //"Track 4" stabm  [17 bytes]
+  //"Track 4" stabm  [6 bytes]
   ATM_ARP(0x34, 0x22),
-  ATM_DELAY(16),
-  ATM_VOL(MV(26)),
-  ATM_NOTE_D3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(32),
-  ATM_VOL(MV(26)),
-  ATM_NOTE_D3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(16),
+  ATM_GOTO(9),   // -> sh1
   ATM_RETURN,
 
   //"Track 5" chords  [84 bytes]
@@ -1212,27 +1118,41 @@ Song diceQuest[] = {          // total song in bytes = 421
   ATM_REPEAT(15, 7),   // 16x pair
   ATM_GOTO(6),   // -> drums
 
-  //"Track 7" pair  [36 bytes]
+  //"Track 7" pair  [21 bytes]
   ATM_VOL(MV(40)),
   ATM_SL_VOL(MS(12)),
+  ATM_GOTO(8),   // -> sh0
+  ATM_GOTO(8),   // -> sh0
+  ATM_VOL(MV(24)),
+  ATM_SL_VOL(MS(6)),
+  ATM_GOTO(8),   // -> sh0
+  ATM_VOL(MV(24)),
+  ATM_SL_VOL(MS(6)),
+  ATM_GOTO(8),   // -> sh0
+  ATM_RETURN,
+
+  //"Track 8" sh0  [7 bytes]
   ATM_DELAY(8),
   ATM_VOL(MV(12)),
   ATM_SL_VOL(MS(12)),
+  ATM_DELAY(8),
+  ATM_RETURN,
+
+  //"Track 9" sh1  [14 bytes]
   ATM_DELAY(16),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
+  ATM_VOL(MV(26)),
+  ATM_NOTE_D3,
+  ATM_SL_VOL(MS(2)),
+  ATM_DELAY(32),
+  ATM_VOL(MV(26)),
+  ATM_NOTE_D3,
+  ATM_SL_VOL(MS(2)),
+  ATM_DELAY(16),
+  ATM_RETURN,
+
+  //"Track 10" sh2  [4 bytes]
   ATM_DELAY(8),
-  ATM_VOL(MV(24)),
-  ATM_SL_VOL(MS(6)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(24)),
-  ATM_SL_VOL(MS(6)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
+  ATM_NOTE_A5,
   ATM_DELAY(8),
   ATM_RETURN,
 
@@ -1241,18 +1161,19 @@ Song diceQuest[] = {          // total song in bytes = 421
 // ---------------------------------------------------------------------------
 // Dice of Fate - in game 4: Wizard's Study
 // A minor, a mysterious waltz: candles, old books and a crystal ball.
-// 361 bytes
+// 354 bytes
 // ---------------------------------------------------------------------------
-Song diceStudy[] = {          // total song in bytes = 361
-  0x08,                         // Number of tracks
+Song diceStudy[] = {          // total song in bytes = 354
+  0x09,                         // Number of tracks
   0x00, 0x00,                   // Address of track 0   //0  lead
   0x6E, 0x00,                   // Address of track 1   //110  bar
   0x71, 0x00,                   // Address of track 2   //113  bass
   0xC7, 0x00,                   // Address of track 3   //199  stabM
-  0xD8, 0x00,                   // Address of track 4   //216  stabm
-  0xE9, 0x00,                   // Address of track 5   //233  chords
-  0x3D, 0x01,                   // Address of track 6   //317  drums
-  0x44, 0x01,                   // Address of track 7   //324  pair
+  0xD0, 0x00,                   // Address of track 4   //208  stabm
+  0xD9, 0x00,                   // Address of track 5   //217  chords
+  0x2D, 0x01,                   // Address of track 6   //301  drums
+  0x34, 0x01,                   // Address of track 7   //308  pair
+  0x44, 0x01,                   // Address of track 8   //324  sh0
 
   0x00,                         // Channel 0 entry track (lead)
   0x05,                         // Channel 1 entry track (chords)
@@ -1410,29 +1331,17 @@ Song diceStudy[] = {          // total song in bytes = 361
   ATM_REPEAT(0, 1),   // 1x bar
   ATM_GOTO(2),   // -> bass
 
-  //"Track 3" stabM  [17 bytes]
+  //"Track 3" stabM  [9 bytes]
   ATM_ARP(0x43, 0x22),
-  ATM_DELAY(16),
-  ATM_VOL(MV(20)),
-  ATM_NOTE_A3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(16),
-  ATM_VOL(MV(20)),
-  ATM_NOTE_A3,
-  ATM_SL_VOL(MS(2)),
+  ATM_GOTO(8),   // -> sh0
+  ATM_GOTO(8),   // -> sh0
   ATM_DELAY(16),
   ATM_RETURN,
 
-  //"Track 4" stabm  [17 bytes]
+  //"Track 4" stabm  [9 bytes]
   ATM_ARP(0x34, 0x22),
-  ATM_DELAY(16),
-  ATM_VOL(MV(20)),
-  ATM_NOTE_A3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(16),
-  ATM_VOL(MV(20)),
-  ATM_NOTE_A3,
-  ATM_SL_VOL(MS(2)),
+  ATM_GOTO(8),   // -> sh0
+  ATM_GOTO(8),   // -> sh0
   ATM_DELAY(16),
   ATM_RETURN,
 
@@ -1489,37 +1398,43 @@ Song diceStudy[] = {          // total song in bytes = 361
   ATM_DELAY(16),
   ATM_RETURN,
 
+  //"Track 8" sh0  [7 bytes]
+  ATM_DELAY(16),
+  ATM_VOL(MV(20)),
+  ATM_NOTE_A3,
+  ATM_SL_VOL(MS(2)),
+  ATM_RETURN,
+
 };
 
 // ---------------------------------------------------------------------------
 // Dice of Fate - in game 5: Dragon's Hoard
 // F minor, heavy and driving: gold, smoke and a very large shadow.
-// 451 bytes
+// 437 bytes
 // ---------------------------------------------------------------------------
-Song diceHoard[] = {          // total song in bytes = 451
-  0x08,                         // Number of tracks
+Song diceHoard[] = {          // total song in bytes = 437
+  0x0B,                         // Number of tracks
   0x00, 0x00,                   // Address of track 0   //0  lead
-  0xA8, 0x00,                   // Address of track 1   //168  bar
-  0xB9, 0x00,                   // Address of track 2   //185  bass
-  0x0F, 0x01,                   // Address of track 3   //271  stabM
-  0x1F, 0x01,                   // Address of track 4   //287  stabm
-  0x2F, 0x01,                   // Address of track 5   //303  chords
-  0x83, 0x01,                   // Address of track 6   //387  drums
-  0x8A, 0x01,                   // Address of track 7   //394  pair
+  0x9F, 0x00,                   // Address of track 1   //159  bar
+  0xB0, 0x00,                   // Address of track 2   //176  bass
+  0x06, 0x01,                   // Address of track 3   //262  stabM
+  0x0E, 0x01,                   // Address of track 4   //270  stabm
+  0x16, 0x01,                   // Address of track 5   //278  chords
+  0x6A, 0x01,                   // Address of track 6   //362  drums
+  0x71, 0x01,                   // Address of track 7   //369  pair
+  0x86, 0x01,                   // Address of track 8   //390  sh0
+  0x8D, 0x01,                   // Address of track 9   //397  sh1
+  0x94, 0x01,                   // Address of track 10   //404  sh2
 
   0x00,                         // Channel 0 entry track (lead)
   0x05,                         // Channel 1 entry track (chords)
   0x02,                         // Channel 2 entry track (bass)
   0x06,                         // Channel 3 entry track (drums)
 
-  //"Track 0" lead  [168 bytes]
+  //"Track 0" lead  [159 bytes]
   ATM_VOL(MV(44)),
   ATM_SL_VOL(MS(4)),
-  ATM_NOTE_F5,
-  ATM_DELAY(8),
-  ATM_NOTE_G5_,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
+  ATM_GOTO(10),   // -> sh2
   ATM_DELAY(8),
   ATM_NOTE_G5_,
   ATM_DELAY(8),
@@ -1531,11 +1446,7 @@ Song diceHoard[] = {          // total song in bytes = 451
   ATM_DELAY(8),
   ATM_NOTE_G5_,
   ATM_DELAY(8),
-  ATM_NOTE_F5,
-  ATM_DELAY(8),
-  ATM_NOTE_G5_,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
+  ATM_GOTO(10),   // -> sh2
   ATM_DELAY(32),
   ATM_NOTE_C6_,
   ATM_DELAY(8),
@@ -1559,11 +1470,7 @@ Song diceHoard[] = {          // total song in bytes = 451
   ATM_DELAY(8),
   ATM_NOTE_G5,
   ATM_DELAY(32),
-  ATM_NOTE_F5,
-  ATM_DELAY(8),
-  ATM_NOTE_G5_,
-  ATM_DELAY(8),
-  ATM_NOTE_C6,
+  ATM_GOTO(10),   // -> sh2
   ATM_DELAY(8),
   ATM_NOTE_F6,
   ATM_DELAY(8),
@@ -1735,28 +1642,16 @@ Song diceHoard[] = {          // total song in bytes = 451
   ATM_REPEAT(0, 1),   // 1x bar
   ATM_GOTO(2),   // -> bass
 
-  //"Track 3" stabM  [16 bytes]
+  //"Track 3" stabM  [8 bytes]
   ATM_ARP(0x43, 0x22),
-  ATM_VOL(MV(24)),
-  ATM_NOTE_F3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(32),
-  ATM_VOL(MV(24)),
-  ATM_NOTE_F3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(32),
+  ATM_GOTO(8),   // -> sh0
+  ATM_GOTO(8),   // -> sh0
   ATM_RETURN,
 
-  //"Track 4" stabm  [16 bytes]
+  //"Track 4" stabm  [8 bytes]
   ATM_ARP(0x34, 0x22),
-  ATM_VOL(MV(24)),
-  ATM_NOTE_F3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(32),
-  ATM_VOL(MV(24)),
-  ATM_NOTE_F3,
-  ATM_SL_VOL(MS(2)),
-  ATM_DELAY(32),
+  ATM_GOTO(8),   // -> sh0
+  ATM_GOTO(8),   // -> sh0
   ATM_RETURN,
 
   //"Track 5" chords  [84 bytes]
@@ -1800,28 +1695,39 @@ Song diceHoard[] = {          // total song in bytes = 451
   ATM_REPEAT(15, 7),   // 16x pair
   ATM_GOTO(6),   // -> drums
 
-  //"Track 7" pair  [36 bytes]
+  //"Track 7" pair  [21 bytes]
   ATM_VOL(MV(46)),
   ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(16),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
+  ATM_GOTO(9),   // -> sh1
   ATM_VOL(MV(26)),
   ATM_SL_VOL(MS(6)),
-  ATM_DELAY(8),
-  ATM_VOL(MV(12)),
-  ATM_SL_VOL(MS(12)),
-  ATM_DELAY(8),
+  ATM_GOTO(9),   // -> sh1
   ATM_VOL(MV(26)),
   ATM_SL_VOL(MS(6)),
+  ATM_GOTO(9),   // -> sh1
+  ATM_RETURN,
+
+  //"Track 8" sh0  [7 bytes]
+  ATM_VOL(MV(24)),
+  ATM_NOTE_F3,
+  ATM_SL_VOL(MS(2)),
+  ATM_DELAY(32),
+  ATM_RETURN,
+
+  //"Track 9" sh1  [7 bytes]
   ATM_DELAY(8),
   ATM_VOL(MV(12)),
   ATM_SL_VOL(MS(12)),
   ATM_DELAY(8),
+  ATM_RETURN,
+
+  //"Track 10" sh2  [6 bytes]
+  ATM_NOTE_F5,
+  ATM_DELAY(8),
+  ATM_NOTE_G5_,
+  ATM_DELAY(8),
+  ATM_NOTE_C6,
   ATM_RETURN,
 
 };
